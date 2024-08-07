@@ -18,7 +18,6 @@ resource "aws_internet_gateway" "sig" {
 resource "aws_subnet" "sps" {
   vpc_id                  = aws_vpc.svpc.id
   cidr_block              = "10.0.0.0/24"
-  availability_zone       = "us-west-2a"
   map_public_ip_on_launch = true
   tags = {
     Name = "my-subnet"
@@ -80,7 +79,6 @@ resource "aws_instance" "new" {
   vpc_security_group_ids      = [aws_security_group.ssg.id]
   associate_public_ip_address = true
   subnet_id                   = aws_subnet.sps.id
-  availability_zone           = "us-west-2a"
   tags = {
     Name = "windows-ec2"
   }
